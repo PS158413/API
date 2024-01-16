@@ -1,0 +1,2231 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Groene Vingers",
+        "version": "3.0.0"
+    },
+    "paths": {
+        "/api_gv/public/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login",
+                "description": "Login",
+                "operationId": "f58a6b9e5e583ca469aee6764ee0cea9",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "manager@groenevingers.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register Staff",
+                "description": "Register New Staff",
+                "operationId": "9baa22329dbca47bed1e3d95781374e5",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Hasan"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Hussein"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Eindhoven"
+                                    },
+                                    "phone": {
+                                        "type": "integer",
+                                        "example": "000000"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hasan@gmail.com"
+                                    },
+                                    "birthday": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2000-04-13"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Register New Staff Data"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/auth/user": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Authenticated User Profile",
+                "description": "Authenticated User Profile",
+                "operationId": "2542c7f8488fb96bc4631ae972f67ee9",
+                "responses": {
+                    "200": {
+                        "description": "Authenticated User Profile"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout",
+                "description": "Logout",
+                "operationId": "36ad96c594989f92f3d2aa621487ee13",
+                "responses": {
+                    "200": {
+                        "description": "Logout"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Refresh",
+                "description": "Refresh",
+                "operationId": "7328e194017c331fb5052d67a2968ecb",
+                "responses": {
+                    "200": {
+                        "description": "Refresh"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/availability": {
+            "get": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "Get Availability List",
+                "description": "Get availability List as Array",
+                "operationId": "index_availability",
+                "responses": {
+                    "200": {
+                        "description": "Get availability List as Array"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "Create New availability",
+                "description": "Create New availability",
+                "operationId": "store_availability",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "absence": {
+                                        "type": "string",
+                                        "example": "Sick"
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "06-06-2023 07:37"
+                                    },
+                                    "finish_time": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "07-06-2023 10:37"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Create New Availability"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/availability/all": {
+            "get": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "All Availability - Accessible",
+                "description": "All Availability - Accessible",
+                "operationId": "availabilityAll",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "perPage, eg; 10",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All Availability - Accessible"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/availability/{id}": {
+            "get": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "Show availability info",
+                "description": "Show availability info",
+                "operationId": "show_availability",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show availability info"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "Update availability",
+                "description": "Update availability",
+                "operationId": "update_availability",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "absence": {
+                                        "type": "string",
+                                        "example": "Sick"
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "06-07-2023 07:37"
+                                    },
+                                    "finish_time": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "07-08-2023 10:37"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update Availability"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "Delete Availability",
+                "description": "Delete Availability",
+                "operationId": "destroy_availability",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete Availability"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/category": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get Category List",
+                "description": "Get category List as Array",
+                "operationId": "index_category",
+                "responses": {
+                    "200": {
+                        "description": "Get category List as Array"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create New category",
+                "description": "Create New category",
+                "operationId": "store_category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "category": {
+                                        "type": "string",
+                                        "example": "buiten planten"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "nickplant"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Create New Category"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/category/all": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "All Category - Publicly Accessible",
+                "description": "All Categories - Publicly Accessible",
+                "operationId": "categoryAll",
+                "responses": {
+                    "200": {
+                        "description": "All Categories - Publicly Accessible"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/category/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Show category info",
+                "description": "Show category info",
+                "operationId": "show_category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show category info"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Update Category",
+                "description": "Update Category",
+                "operationId": "update_category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "category": {
+                                        "type": "string",
+                                        "example": "Bloemen"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update Category"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete category",
+                "description": "Delete category",
+                "operationId": "destroy_category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete category"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/category/detach/{id}": {
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Detach Product",
+                "description": "Detach product",
+                "operationId": "detach_product",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "nickplant"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Detach Product"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/product/checkoutproduct/all": {
+            "get": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Show list of all checkoutproducts",
+                "description": "Show list of all checkoutproducts",
+                "operationId": "checkoutProduct_All",
+                "responses": {
+                    "200": {
+                        "description": "Show list of all checkoutproducts"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/product/code/{code}": {
+            "get": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Show product info by code",
+                "description": "Show product info by code",
+                "operationId": "show_product_by_code",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "code, eg; 123456789",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show product info by code"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/product/checkoutproduct": {
+            "post": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Post product to table",
+                "description": "Post product to table",
+                "operationId": "post_product",
+                "requestBody": {
+                    "description": "Post product to table",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "article_number",
+                                    "name",
+                                    "price",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "article_number": {
+                                        "type": "integer",
+                                        "example": "123456789"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "product name"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "example": "123456789"
+                                    },
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "123456789"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Post product to table"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Delete all checkoutproducts",
+                "description": "Delete all checkoutproducts",
+                "operationId": "delete_all_checkoutproducts",
+                "responses": {
+                    "200": {
+                        "description": "Delete all checkoutproducts"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/product/barcode/{barcode}": {
+            "post": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Post product to other table by searching barcode",
+                "description": "Post product to other table by searching barcode",
+                "operationId": "post_product_by_barcode",
+                "parameters": [
+                    {
+                        "name": "barcode",
+                        "in": "path",
+                        "description": "barcode, eg; 123456789",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post product to other table by searching barcode"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/product/checkoutproduct/{id}": {
+            "delete": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Delete checkoutproduct by id",
+                "description": "Delete checkoutproduct by id",
+                "operationId": "delete_checkoutproduct_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete checkoutproduct by id"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/product/receipt": {
+            "post": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "receipt_product to receipt",
+                "description": "receipt_product to receipt",
+                "operationId": "post_receipt",
+                "responses": {
+                    "200": {
+                        "description": "receipt_product to receipt"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/receipts": {
+            "get": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Get all receipts",
+                "description": "Get all receipts",
+                "operationId": "get_all_receipts",
+                "responses": {
+                    "200": {
+                        "description": "Get all receipts"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/login": {
+            "post": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Login with customernumber",
+                "description": "Login with customernumber",
+                "operationId": "login_with_customernumber",
+                "requestBody": {
+                    "description": "Login with customernumber",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "customernumber",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "customernumber": {
+                                        "type": "integer",
+                                        "example": "123456789"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login with customernumber"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/user/customernumber/{customernumber}": {
+            "get": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Get user by customernumber",
+                "description": "Get user by customernumber",
+                "operationId": "user_by_customernumber",
+                "parameters": [
+                    {
+                        "name": "customernumber",
+                        "in": "path",
+                        "description": "customernumber, eg; 123456789",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get user by customernumber"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/user/customernumber/all": {
+            "get": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Get all customers",
+                "description": "Get all customers",
+                "operationId": "getAllCustomers",
+                "responses": {
+                    "200": {
+                        "description": "Get all customers"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/customer": {
+            "post": {
+                "tags": [
+                    "Customer Order"
+                ],
+                "summary": "Customer Order",
+                "description": "Customer Order",
+                "operationId": "store_customer_order",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Hasan"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "0681302145"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hasan@gmail.com"
+                                    },
+                                    "zipcode": {
+                                        "type": "string",
+                                        "example": "5737GB"
+                                    },
+                                    "huisnummer": {
+                                        "type": "string",
+                                        "example": "71"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Dorpsstraat 71, 5737GB Lieshout"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Lieshout"
+                                    },
+                                    "total": {
+                                        "type": "integer",
+                                        "example": "200"
+                                    },
+                                    "products": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Product 50"
+                                                },
+                                                "quantity": {
+                                                    "type": "integer",
+                                                    "example": "4"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Customer Order Created"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/kuin/products": {
+            "get": {
+                "tags": [
+                    "Product Kuin"
+                ],
+                "summary": "Get product List",
+                "description": "Get product List as Array",
+                "operationId": "index_kuin",
+                "responses": {
+                    "200": {
+                        "description": "Get product List as Array"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/order": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get Order List",
+                "description": "Get order List as Array",
+                "operationId": "index_order",
+                "responses": {
+                    "200": {
+                        "description": "Get order List as Array"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Create New Order",
+                "description": "Create New Order",
+                "operationId": "store_order",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Product 50"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Create New Category"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/order/all": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "All Order - Publicly Accessible",
+                "description": "All Orders - Publicly Accessible",
+                "operationId": "OrderAll",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "perPage, eg; 10",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All Orders - Publicly Accessible"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/order/{id}": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Show Order info",
+                "description": "Show Order info",
+                "operationId": "show_order",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Order info"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/product": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get Product List",
+                "description": "Get Product List as Array",
+                "operationId": "index_product",
+                "responses": {
+                    "200": {
+                        "description": "Get Product List as Array"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create New Product",
+                "description": "Create New Product",
+                "operationId": "store_product",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "article_number": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "nickplant"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Nick is een plant"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "example": "20"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "image/plant.jpg"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "example": "Blue"
+                                    },
+                                    "height_cm": {
+                                        "type": "integer",
+                                        "example": "178"
+                                    },
+                                    "width_cm": {
+                                        "type": "integer",
+                                        "example": "100"
+                                    },
+                                    "depth_cm": {
+                                        "type": "integer",
+                                        "example": "30"
+                                    },
+                                    "weight_gr": {
+                                        "type": "integer",
+                                        "example": "20"
+                                    },
+                                    "barcode": {
+                                        "type": "integer",
+                                        "example": "123456789"
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": "7"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Create New Product"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/product/all": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "All Products - Publicly Accessible",
+                "description": "All Products - Publicly Accessible",
+                "operationId": "indexAll",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "perPage, eg; 10",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All Products - Publicly Accessible"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api_gv/public/api/product/{id}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Show Product Details",
+                "description": "Show Product Details",
+                "operationId": "show_product",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Product Details"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update Product",
+                "description": "Update Product",
+                "operationId": "update_product",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "article_number": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "hasanplant"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Hasan is een plant"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "example": "20"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "image/plant.jpg"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "example": "Blue"
+                                    },
+                                    "height_cm": {
+                                        "type": "integer",
+                                        "example": "178"
+                                    },
+                                    "width_cm": {
+                                        "type": "integer",
+                                        "example": "100"
+                                    },
+                                    "depth_cm": {
+                                        "type": "integer",
+                                        "example": "30"
+                                    },
+                                    "weight_gr": {
+                                        "type": "integer",
+                                        "example": "20"
+                                    },
+                                    "barcode": {
+                                        "type": "integer",
+                                        "example": "123456789"
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": "7"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "buiten planten"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update Product"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Delete Product",
+                "description": "Delete Product",
+                "operationId": "destroy_product",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete Product"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/role": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get Roles List",
+                "description": "Get Roles List as Array",
+                "operationId": "index_role",
+                "responses": {
+                    "200": {
+                        "description": "Get Role List as Array"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Create New Role",
+                "description": "Create New Role",
+                "operationId": "store_role",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "superadmin"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "manager"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Create New Rol"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/role/all": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "All Roles - Accessible",
+                "description": "All Roles - Accessible",
+                "operationId": "roleAll",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "perPage, eg; 1",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All Roles - Publicly Accessible"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/role/{id}": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Show Role Details",
+                "description": "Show Role Details",
+                "operationId": "show_role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Role Details"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Update Role",
+                "description": "Update Role",
+                "operationId": "update_role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "user"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "customer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update Role"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Delete Role",
+                "description": "Delete Role",
+                "operationId": "destroy_role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete Role"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/role/user/{id}": {
+            "put": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Update Role by User",
+                "description": "Update Role by User",
+                "operationId": "update_role_user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "staff"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update Role by user"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/user/all": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "All Users - Publicly Accessible",
+                "description": "All Users - Publicly Accessible",
+                "operationId": "UserAll",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "perPage, eg; 10",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All Users - Publicly Accessible"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/user": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get User List",
+                "description": "Get User List as Array",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Get User List as Array"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create User",
+                "description": "Create New User",
+                "operationId": "store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Hasan"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Hussein"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Eindhoven"
+                                    },
+                                    "phone": {
+                                        "type": "integer",
+                                        "example": "000000"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hasan@gmail.com"
+                                    },
+                                    "birthday": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "13-04-2000"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "staff"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Register New User Data"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api_gv/public/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Show user info",
+                "description": "Show user info",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show user info"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user",
+                "description": "Update user",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "name"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "lastname"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "city"
+                                    },
+                                    "phone": {
+                                        "type": "integer",
+                                        "example": "000000"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "manager@groenevingers.com"
+                                    },
+                                    "birthday": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "17-08-1990"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "manager"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update user"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user member",
+                "description": "Delete user member",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id, eg; 1",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete user member"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "apiKey",
+                "description": "Bearer token, Ex: Bearer <token>",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearer": {
+                "type": "apiKey",
+                "description": "Bearer token, Ex: Bearer <token>",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    ]
+}
